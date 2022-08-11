@@ -1,0 +1,45 @@
+
+===thedock===
+You are on a Dock. 
+{not fishingrod: There is a Fishing Rod here.}
+{fishingrod: It's pretty empty.}
+Exits are North and South
++ ->dockchoices
+
+==dockchoices==
+
+What do you do?
++ [Go North (back to the ship)] ->ontheship 
++ [Go South] -> atsignpost 
++ [Use] ->useondock
++ [Examine] ->examinedock
+* {not fishingrod} [Pick up Fishing Rod] ->fishingrod
++ [Travel directly to somewhere you've already visited.] ->fasttravelfromdock
++ [Check what you're carrying] ->inventorydock
+
+==examinedock
+{not fishingrod:  Other than the Fishing Rod, there is not very much to look at here.} 
+{fishingrod: There is nothing else on the Dock. }
+To the North, the pirate ship is docked. To the South, the path heads inland.
+ ->dockchoices
+
+==fishingrod==
+You pick up a Fishing Rod. You now have a Fishing Rod in your Inventory.
++ [Whoever left it there should have anticipated pirates.] ->thedock
+
+==useondock==
+Use what?
+* { fishingrod and not fishonboat}
+[Use Fishing Rod to fish off the side of the dock.] ->fishondock
++ {fishingrod and fishondock} 
+You already caught a Beautiful Fish. You don't need another. 
+->thedock
++ {fishingrod and fishonboat} 
+You already caught a Beautiful Fish. You don't need another.
+->thedock
++ {not fishingrod} You don't have anything to use. But you could take that Fishing Rod. No one is watching it. ->dockchoices
+
+==fishondock==
+You use the fishing rod off the side of the dock, and after very little time, you successfully catch a fish! You now have 1 Beautiful Fish in your Inventory.
+* [And what a Beautiful Fish it is, too!]
+->thedock

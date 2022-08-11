@@ -1,0 +1,66 @@
+==inpetshop==
+
+You enter the Pet Shop. ->petshopchoices
+
+==petshopchoices==
+
+You are inside a pet shop. The shop is almost empty. 
+{not parrot: There is a cage with a Parrot in it.} 
+There is a giant aquarium with a very large Grumpy Squid. 
+There is a Shopkeeper.  ->whattodopetshop
+
+==whattodopetshop==
+
+What do you do?
++ {not giveparrot} [Talk to the Parrot.] ->talktoparrot
++ [Talk to the Shopkeeper.] ->shopkeeper
++ {shopkeeper and not whitewool} [Bother the Grumpy Squid.] ->inksquirt
++ {whitewool and shopkeeper and not beardonface} [Put the white woolly beard on your face.] ->beardonface
++ {beardonface and not blackbeard} [With the white woolly beard on your face, you annoy the Grumpy Squid.] ->blackbeard
++ [Examine the Grumpy Squid.] ->examinesquid
++ [Travel directly to somewhere you've already visited.] ->fasttravelfrompetshop
++ [Check what you're carrying] ->inventoryshop
+
+==talktoparrot==
+The parrot says “Hello Sexy! Hello Sexy!” ... Is it calling you sexy? Or the Shopkeeper? Or the Grumpy Squid? Maybe it's just making sounds. It's impossible to tell while it's in the shop. ->whattodopetshop
+
+==shopkeeper==
+{not parrot: “Would you like to buy a Parrot? He costs exactly 100 silver coins.” }
+“Would you like to buy a Squid? He costs 100 GOLD coins. Please don’t bother him - he is very grumpy today.”
+* {treasure and givemonocle and coin} [Pay exactly 100 silver coins for the parrot.] ->parrot
++ [Buy the Grumpy Squid.] ->cantbuysquid
++ {not parrot} [Haggle for the Parrot.] ->haggleparrot
++ [There's nothing else you want to say to the Shopkeeper right now.] ->petshopchoices
+
+==haggleparrot==
+"Exactly 100 silver coins. Not a coin more or less. No bartering. Just the coins. Thank you." 
+->shopkeeper
+
+==cantbuysquid==
+"You can't afford this Squid! You don't have any gold coins at all! And anyway, he's exorbitantly priced because he's a bit of a mascot for me." 
+->shopkeeper
+
+==parrot==
+“Here is your Parrot. Take care of him”. You carry the Parrot in his cage. 
++ [You have a Parrot in your Inventory.] ->whattodopetshop
+
+
+===examinesquid===
+The Grumpy Squid is about the same size as you. He does not like you.
++ [Back away.] ->petshopchoices
++ {not beardonface} [Annoy the Grumpy Squid.] ->inksquirt
++ {beardonface} [Annoy the Grumpy Squid and make it squirt you, while wearing the black beard.] ->blackbeard
+
+==inksquirt==
+You annoy the Grumpy Squid. He squirts you in your face with ink. Your face is now black with ink. 
+* {whitewool} You take the white woolly beard and wipe your face with it. ->blackbeard 
++ [Ugh. You wipe your face dry with your shirt.] ->whattodopetshop
+
+==beardonface==
+You are now wearing the white woolly beard on your own face. 
+->whattodopetshop
+
+==blackbeard==
+The beard is now black! 
++ [You have an inky blackbeard in your Inventory.]
+->whattodopetshop

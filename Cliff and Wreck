@@ -1,0 +1,49 @@
+===downcliff===
+You start to climb down the cliff. So far, it has been safe, but below, the waves have splashed the cliffs and the cliff walls are wet, further down. ->cliffchoices
+
+==cliffchoices==
++ [Climb further down.] ->cliffdie
++ [Climb back up.] -> balcony
++ [Look around.] ->cliffview
+
+==cliffview==
+You are aboout halfway down the cliff face. At the bottom is a shipwreck, crashed into jagged rocks. {not treasure: In the shipwreck, you can see a treasure chest of silver coins.} {treasure: In the shipwreck, you can see the now empty treasure chest.} The cliff face lower down is slippery and dangerous. There doesn't seem to be anything around to help you climb further down safely. ->cliffchoices
+
+==cliffdie==
+You try to climb the rest of the way down, but you slip on the wet rock and fall. You smash into the jagged rocks. 
+You are dead.
+
+You died!
++ Try again from the beginning.
+    # RESTART
+    -> END
+    
+==shipwreck==
+You climb down the rope and reach the shipwreck. 
+-> wreckchoices
+
+==wreckchoices==
+{not treasure: There is a treasure chest. It is open, and it has silver coins in it.}
++ [Examine the shipwreck.] ->examinewreck
++ {not treasure} [Pick up the contents of the treasure chest.] ->treasure
++ [Climb back up the rope.] ->balcony
++ [Travel directly to somewhere you've already visited] ->fasttravelfromwreck
++ [Check what you're carrying] ->inventorywreck
+
+==examinewreck==
+Other than the treasure chest on the rocks, the rest of the shipwreck is surrounded by jagged rocks. Waves are crashing around it. It looks dangerous.
++ [Approach the rest of the shipwreck.] ->wreckdie
++ [Looks dangerous. Choose to stay where you are.] ->wreckchoices
+
+
+==wreckdie==
+You try to leap onto a jagged rock, but slip off into the violent waters, and are bashed against another rock.
+
+You died!
++ Try again from the beginning.
+    # RESTART
+    -> END
+
+==treasure==
+You take all the silver coins. There were 97 silver coins in the chest. You now have an extra 97 coins in your Inventory. There is nothing else in the treasure chest. 
+->wreckchoices

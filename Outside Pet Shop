@@ -1,0 +1,64 @@
+===outsideshop===
+You are outside a shop. There is a tree here. 
+There is a sign above the shop that says “PETS”. 
+Exits are: North, Inside
+
+->outshopchoices
+
+==outshopchoices==
+What do you do?
+
++ [Examine] ->examineoutside
++ [Go North] ->atsignpost
++ [Go Inside] ->inpetshop
++ [Pick Up] ->pickupoutside
++ [Use] -> useoutside
++ {lookattree} [Climb the Tree] ->tree
++ [Travel directly to somewhere you've already visited.] ->fasttravelfromoutsidepetshop
++ [Check what you're carrying] ->inventoryoutisde
+
+==pickupoutside
+There is nothing to pick up out here. ->outshopchoices
+
+===useoutside===
+There is nothing to use here at the moment. It seems the shop door will open easily if you go inside. 
+-> outshopchoices
+* {inthebranches and not cat and fishonboat or fishondock} [Lure the cat to you with your Beautiful Fish.] ->fishonfloor
+
+==fishonfloor==
+You wave the Beautiful Fish around, but with all the leaves in the way, you surmise that the cat can't truly appreciate the fish from there. 
++ You'll have to get closer. ->outsideshop
+
+==examineoutside==
+What do you examine?
++ [Tree] ->lookattree
++ [Shop] ->lookatshop
+
+==lookatshop==
+There is a sign above the shop that says “PETS”.  The door has a sign on it that says “OPEN”. 
+->outshopchoices
+
+==lookattree==
+There is a tall tree. It looks like you could climb it.
+{not cat: You see something rustling in the leaves.} 
++ {cat} [Now that the cat is out of the tree, it is a really boring tree. You're bored looking at it.] ->outsideshop
++ {not cat} [Rustling? Interesting...]->outsideshop
+
+
+==tree==
+You climb the tree. ->inthebranches
+
+==inthebranches==
+{not cat: In the tree branches, there is a cat. It looks scared.}
+{cat:  Now that the cat is out of the tree, it is a really boring tree. The leaves block the view. You are bored in this tree.}
++ [Climb back down] ->outsideshop
++ {not cat} [Try to pick up the cat] ->catscratch
+* {not cat and fishonboat or fishondock} [Lure the cat to you with your Beautiful Fish.] ->cat
+
+===cat===
+The cat smells the fish. The cat sees the fish. You think the cat really appreciates the beauty of this fish. It comes to you and takes the fish in it's mouth. It's not eating it, just holding it. Probably so it can admire it more later. 
+You now have a cat on your shoulder. The tree is much more boring now the cat is no longer sitting on it.
++ You climb back down. ->outsideshop
+ 
+ ==catscratch==
+You go to pick the cat, but it doesn't like you. It hisses and scratches at you, then backs away. ->inthebranches

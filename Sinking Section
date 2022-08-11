@@ -1,0 +1,45 @@
+===sinkingsection==
+
+You are in a hammock
+You are in a cabin on a pirate ship. 
+There is water on the floor.
+
+
+What do you do?
++[Go Forward] -> fallandgetwet
+
+
+You try, and in the process, you fall out of the hammock, and land face first in the water on the floor. You are wet and cold.
+
+
+
+
+->whatnexthammock
+
+===whatnexthammock===
+You are in a cabin on a pirate ship. 
+There is water on the floor.
+{fallandgetwet: You are dripping wet and cold. }
+What do you do?
++[Go Forward] -> fallandgetwet
+
+==fallandgetwet==
+
+
+
+->DONE
+
+
+===sinkstorage===
+
+Exits are: Forward
+
+You try, and in the process, you fall out of the hammock, and land face first in the water on the floor. You are wet and cold.
+
+Examine water
+
+You gracefully step out of the hammock and onto the wet floor.
+
+
+
+->DONE

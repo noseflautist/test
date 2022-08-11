@@ -1,0 +1,82 @@
+===cyclopsfield===
+You find a {givemonocle: happy cyclops.  He is wearing a monocle. He sees you coming and waves.} {not givemonocle: large imposing cyclops.} 
+He is guarding a field of sheep, which are behind him to the East. 
+->cyclopschoices
+
+==cyclopschoices==
+What do you do?
+
+* { (talktocyclops || examinecyclops) && (monocle and not givemonocle)}  Give the piece of the telescope to the cyclops. ->givemonocle
++ [Examine the cyclops.] ->examinecyclops
++ {not givemonocle} [Talk to the cyclops.] ->talktocyclops
++ {givemonocle} [Talk to your friend the cyclops.] ->friendlycyclops
++ [Examine the field.] ->examinefield
++ {givemonocle and examinefield and not whitewool} [Your friend the Spiffy Cyclops will let you use the shears.] ->useshears
++ {givemonocle and examinefield and whitewool} [Your friend the Spiffy Cyclops will let you shear another sheep.] ->useshears
++ [Head back West to the signpost.] ->atsignpost
++ [Travel directly to somewhere you've already visited] ->fasttravelfromfield
++ [Check what you're carrying] ->inventoryfield
+
+==examinefield==
+Behind the cyclops is a field of content and woolly sheep. They all have white wool. You can see some sheep shears on a rock.
++ {not givemonocle} [Try to pick up the Sheep Shears.] ->shearsnotfriends
++ {givemonocle} [Your friend the Spiffy Cyclops will let you use the shears.] ->useshears
++ {not givemonocle} It doesn't look like the Cyclops will let you pick up the shears. ->cyclopschoices
+
+==examinecyclops==
+He very tall, and watching you. He is wearing a suit and bowtie. {not givemonocle: He is squinting.} {givemonocle: He looks Quite Spiffy with that monocle you gave him.} He's standing between you and the sheep.
+->cyclopschoices
+
+==talktocyclops==
+"Hey you! You can't come down this way. My sheep are grazing here, and I won't let strangers near them. You are a stranger, right? I can't really see your face clearly." He squints at you.
++ [(Lie.) "No, I'm an old friend of yours!"] ->lietocyclops
++ "A stranger is just a friend you haven't met yet." ->persuadecyclops
++ {not monocle} "Fine. I'll just have to become your friend then. I'll get you a gift to prove it." ->cyclopschoices 
+* {monocle and not givemonocle} ["Would you like this... monoocle? It might improve your eyesight."] ->givemonocle
+
+==lietocyclops==
+"No, I'm an old friend of yours!"
+He looks menacingly in the direction of your voice. "You know... it's not smart to lie to a cyclops. You don't sound like any of my friends... Lie to me again and you'll suffer the consequences."
++ {not monocle} "Fine. I'll just have to become your friend then. I'll get you a gift to prove it." ->cyclopschoices
++ [(Lie again.) "No, it's me, Jamie! I just have a cold!"] ->cyclopskill
+* {monocle and not givemonocle} "Would you like this... monoocle? It might improve your eyesight." ->givemonocle
+
+==persuadecyclops==
+"I guess if you want to be my friend... we could become friends. Do you like sheep as much as me?" You talk for a while, and you think you're persuading him, but then he says, "I can't help but feel suspicious. What if you're just using me to get to my sheep?"
++ {not monocle} "I'll get you a gift to prove my friendship. Something you could use." ->cyclopschoices 
++ "I guess I can't prove that. You'll just have to trust me." ->trustissues
+
+==trustissues==
+"I'm sorry. I've always had trust issues. Can... you leave me alone for a bit please?"
++ Poor cyclops. Maybe you can find him something nice. ->cyclopschoices
+
+==friendlycyclops==
+You chat with the cyclops, who is happy to see you. He talks about the different personalities of the sheep. He explains that he can't really talk to the sheep, but that they just have to look at him with their intentions and he can figure out what they want. It sounds like he's happy with his life. He teaches you a little trick to tell if a sheep is thirsty or sad. 
++ [+1 Sheep Whisperer] 
+->cyclopschoices
+
+==cyclopskill==
+"No, it's me, Jamie! I just have a cold!"
+"GRAAAAGH, JAMIE SPOKE TO ME THIS MORNING AND HE'S VERY HEALTHY TODAY!"
+The cyclops picks you up and throws you down a cliff. You smash into the rocks and die. He did warn you.
+You died!
++ Try again from the beginning.
+    # RESTART
+    -> END
+
+==givemonocle==
+You hand over the piece of the telescope to the cyclops.
+“Wow, a monocle! For me? Thank you! Now I can see MUCH better!" He now looks Quite Spiffy. "This is too generous, even from a friend! Here, take this silver coin as well. If you want to go and see my sheep now, you're welcome to!"  
++ [You now have one more silver coin in your Inventory.]
+->cyclopschoices
+
+==shearsnotfriends==
+"Hey! You can't go near my sheep, stranger! Stay away!" The cyclops won't let you pass. ->cyclopschoices
+
+==useshears==
+{not whitewool: The cyclops lets you shear a sheep. The sheep clearly enjoys the cool breeze now it's not so woolly. You put the sheep shears back, as the Cyclops wants to keep them. ->whitewool }
+{whitewool: The cyclops is happy to let you shear another sheep, and the sheep loves that too, but he has a livelihood to maintain, so he won't let you take any more wool for yourself. You put the sheep shears back, as the Cyclops wants to keep them. ->cyclopschoices }
+
+==whitewool==
+While shearing the sheep, you get creative and shear a perfect wooly shape for a beard. The wool is white. 
++ You now have a White Woolly Beard in your inventory. ->cyclopschoices

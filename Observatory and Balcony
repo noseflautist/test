@@ -1,0 +1,83 @@
+===place_observatory===
+You are inside an observatory. 
+There is a {not usetelescope: grand} {usetelescope: broken} telescope pointing out of the window.
+There is a {not cathome: frantic man, holding a compass.} {cathome: happy man, fawning over a disinterested cat.} 
+At the back of the observatory, double doors open onto a large balcony with a view of the sea.
+
++ [Go back out the front door, towards the well.] ->place_wellonhill
++ [Go out onto the balcony at the back.] ->balcony
++ {not usetelescope} [Use the telescope.] ->usetelescope
++ {not cat} [Talk to the frantic man.] ->unhappyman
++ {cat and not cathome} [Approach the frantic man, while the the cat still sits on your shoulder.] ->cathome 
++ [Travel directly to somewhere you've already visited.] ->fasttravelfromobservatory
++ [Check what you're carrying] ->inventoryobservatory
+
+==usetelescope==
+You try to use the telescope and it breaks. A glass piece at the top falls off, and rolls out onto the balcony. Luckily the man didn't notice. 
++ Oops! ->place_observatory
+
+==unhappyman==
+{not cat: The unhappy man is peering onto shelves and under tables, holding some bits of fish. “I’m trying to find my cat. If you can return my cat to me, you can have this compass.” He looks pretty frantic... now he's checking inside a book.}
++ "Can you describe the cat?" -> catdescription
++ [Go back to looking around] 
+->place_observatory
+
+==catdescription==
+"Oh, well, firstly, I don't know if it's a "he" or a "she". It seemed rude to check."
+He continues: "It's sleek and calm, yet fiery and independent too. It loves to climb, and hates to be touched. It loves to touch, but on it's own rules, you understand. And it's been gone for a whole day, so it MUST be hungry by now! Oh, my precious kitten!"
++ "But can you describe its appearance?" 
+->toostressed
++ [Go back to looking around] 
+->place_observatory
+
+==toostressed==
+"It's the only cat on the whole island! Find something that's a cat, that'll be... it. I've already spent too long not looking!" He returns to frantically opening desk drawers. 
++ [Go back to looking around] 
+->place_observatory
+
+==cathome==
+“You found my cat! I am so happy!" He gleefully runs up to you.
+The cat jumps down from your shoulder and ignores the man, instead taking the fish to a corner and starts to eat it. You are reminded that all beauty is transient. 
++ [+1 Poignancy.] ->compass
+
+==compass==
+The man sees you wipe a tear from your face. "Thank you," he says. "Here, you can have my compass in exchange. I don't really need it, I never go anywhere." 
++ [You now have a Compass in your Inventory. Useful!] ->place_observatory
+
+===balcony===
+The balcony of the observatory is made of sturdy stone. It is above a cliff. The view is beautiful. 
+{usetelescope and not monocle: A piece of the telescope is here.} 
+{ropetie: A 20m rope is tied to the balcony and leads down the cliff.}
+Exits are Inside, and Down
++ [Examine the balcony and the view.] ->examinebalcony
++ {usetelescope and not monocle} [Examine the piece of the telescope.] ->piece 
+* {examinebalcony and fishforbucket} Tie the rope to the bannister. -> ropetie
++ {ropetie} [Climb down the cliff with the rope.] ->shipwreck
++ [Climb down the cliff.] ->downcliff
++ {ropetie} [Pick up the rope again] ->ropetrouble
++ [Re-enter the Observatory.] ->place_observatory
++ [Check what you're carrying] ->inventorybalcony
+
+==ropetrouble==
+The Game Maker speaks to you: "Look. Obviously, you would want to pick up the rope and use it again later. I get that. Rope is useful. It's Just... leave this one here, OK? I promise you won't need it again today." 
++ ["It sounds immersion-breakingly implausible that I'd choose to leave 20 metres of rope just dangling here, but... I guess I have no choice."] ->balcony
+
+==piece==
+It is a large circular piece of glass with a metal rim, and a chain on the metal rim.
+* [Pick up the piece of the telescope.] -> monocle
++ [Leave it where it is for now.] ->balcony
+
+==monocle==
+You pick up the piece of the telescope. 
++ [You now have a piece of a telescope in your Inventory.] ->balcony
+
+==examinebalcony==
+You look at the view. You see that the cliff is about 20 metres high, and at the bottom is a shipwreck, crashed into jagged rocks. {not treasure: In the shipwreck, you can see a treasure chest of silver coins.} {treasure: In the shipwreck, you can see the now empty treasure chest.} {usetelescope and not monocle: A piece of the broken telescope is on the floor of the balcony.} The bannister of the balcony is very strong.
++ {usetelescope and not monocle} [Examine the piece of the telescope.] ->piece 
++ {fishforbucket and not ropetie} Tie the rope to the bannister. -> ropetie
++ [What a lovely view. Hopefully soon you'll be exploring the seas.] ->balcony
+
+==ropetie==
+You attach the rope to the balcony. It drops down over the edge to the shipwreck.
++ [Climb down the cliff with the rope.] ->shipwreck
++ [Don't climb down just yet.] ->balcony

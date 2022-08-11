@@ -1,0 +1,20 @@
+= update_readerbrain(val)
+    ~ readerbrain += val
+    ->->
+
+= update_naturelover(val)
+    ~ naturelover += val
+    ->->
+
+= update_socialite(val)
+    ~ socialite += val
+    ->->
+
+= update_holdyourdrink(val)
+    ~ readerbrain += val
+    ->->
+
+= update_toughfighter(val)
+    ~ readerbrain += val
+    ->->
+

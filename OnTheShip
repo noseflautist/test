@@ -1,0 +1,120 @@
+===ontheshipstart===
+You are on a Pirate Ship. There is a sad-looking Pirate Captain. Exits are: South.
++ [Look around] ->examineship
++ [Talk to the Pirate Captain] ->talktoonship
++ [Go South] ->thedock 
++ [Check what you're carrying] ->inventoryship
+
+===ontheship===
+You are on a Pirate Ship. There is a sad-looking Pirate Captain. Exits are: South.
+->shipchoices
+
+==shipchoices==
+What do you do?
+* {whitewool and not blackbeard} [Give the Pirate Captain the white woolly beard.] ->givewhitebeard
+* {compass and not givecompass} [Give the compass to the Pirate Captain.] ->givecompass
+* {parrot and not giveparrot} [Give the parrot to the Pirate Captain.] ->giveparrot
+* {blackbeard and not giveblackbeard} [Give the inky beard to the Pirate Captain.] ->giveblackbeard
++ [Examine Ship] ->examineship
++ [Talk to the Pirate Captain] ->talktoonship
++ {fishingrod and not (fishondock or fishonboat)} [Use] ->useonship
++ [Pick up] ->pickuponship
++ [Go South] ->thedock 
++ [Check what you're carrying] ->inventoryship
++ [Travel directly to somewhere you've already visited.] ->fasttravelfromship
+
+==examineship==
+It is a sturdy ship, well fitted. It is docked at a harbour on Cyclops Island. There is a sad-looking Pirate Captain standing in the middle of the deck.
+ The Pirate Captain has a pirate hat, an eyepatch, and he is clean-shaven. He looks sad. What do you do?
+What do you do?
++ [Talk to the Pirate Captain] ->talktoonship
++ [Use] ->useonship
++ [Pick up] ->pickuponship
++ [Go South] ->thedock
+
+ ==examinecaptain==
+
++ [Examine Ship] ->examineship
++ [Talk to the Pirate Captain] ->talktoonship
++ [Use] ->useonship
++ [Pick up] ->pickuponship
++ [Go South] ->thedock
+
+==useonship==
+What do you use?
+* { fishingrod > 0 and not fishondock} 
+[Use Fishing Rod to fish off the boat.] ->fishonboat
++ { not fishingrod } [There's nothing here that you can use right now.] ->nothingtouseonship
+* {fishingrod > 0 and fishondock} You already caught a Beautiful Fish. You don't need another.
+->nothingtouseonship
++  {fishingrod > 0 and fishonboat} You already caught a Beautiful Fish. You don't need another. 
+->nothingtouseonship
+
+==nothingtouseonship==
+There's nothing here that you can use right now. The ship is not yours, and neither is the Captain.
+->ontheship
+
+==fishonboat==
+You use the fishing rod off the side of the boat, and catch one beautiful fish! You now have 1 Beautiful Fish in your Inventory. 
+->ontheship
+
+==pickuponship==
+Pick up what?
++ [Pirate Captain] ->flirt
++ [There's nothing else to take.] -> ontheship
+
+==flirt==
+You flirt with the Pirate Captain. He is surprised, and blushes... but he's a little distracted right now. +1 Flirtatious.
+->ontheship
+
+==talktoonship==
+You approach the Pirate Captain. He sighs, and then says, "Hello....." 
++ { (not giveblackbeard or not givecompass or not giveparrot)} [Talk about why the Captain is sad.] ->fetchlist
++ [Talk about the ship.] ->abouttheship
++ [Talk about the island.] ->abouttheisland
++ [You're done talking.] ->ontheship
+* {whitewool and not blackbeard} [Give the Pirate Captain the white woolly beard.] ->givewhitebeard
+* {compass and not givecompass} [Give the compass to the Pirate Captain.] ->givecompass
+* {parrot and not giveparrot} [Give the parrot to the Pirate Captain.] ->giveparrot
+* {blackbeard and not giveblackbeard} [Give the inky beard to the Pirate Captain.] ->giveblackbeard
++ {givecompass and giveblackbeard and giveparrot} [Talk to the HAPPY Pirate Captain!] ->endchapter1
+
+==fetchlist==
+The Pirate Captain says: “I want to sail the seas and explore, but no one will consider me a REAL Pirate Captain. 
++ [What will make them change their minds?] -> objectives
+
+==objectives==
+
+What do I really need to be a Real Pirate Captain? {not givecompass: A Compass. } {not giveparrot: A Parrot. } {not giveblackbeard: A Black Beard. }  {(givecompass && giveparrot && giveblackbeard): Nothing! Well, some experience. } And that's all.  
++ [And yet he just stands there, and does nothing to get those things. I guess you could see what you can find on the island.] ->ontheship
+Talk about what?
++ [Talk about the ship.] ->abouttheship
++ [Talk about the island.] ->abouttheisland
++ [You're done talking.] ->ontheship
+
+==abouttheship== 
+"“This ship used to belong to my uncle. I’ve never sailed it. I want to sail the seas and explore.”
+Talk about what?
++ [Talk about why the Captain is sad.] ->fetchlist
++ [Talk about the island.] ->abouttheisland
++ [You're done talking.] ->ontheship
+
+==abouttheisland==
+"This is Cyclops Island. It's not very big. There's an observatory, some fields, a shop... and a Cyclops! He watches the sheep."
+Talk about what?
++ [Talk about the Cyclops.] ->aboutcyclops
++ [Talk about why the Captain is sad.] ->fetchlist
++ [Talk about the ship.] ->abouttheship
++ [You're done talking.] ->ontheship
+
+==aboutcyclops==
+"I don't know much about him, as I haven't been close. He seems to have terrible eyesight, and I'm not just talking about his lack of depth perception." 
+Talk about what?
++ { (not giveblackbeard or not givecompass or not giveparrot)} [Talk about why the Captain is sad.] ->fetchlist
++ {givecompass and giveblackbeard and giveparrot} [Talk to the HAPPY Pirate Captain!] ->endchapter1
++ [Talk about the ship.] ->abouttheship
++ [You're done talking.] ->ontheship
+
+==givewhitebeard==
+"Oh a beard! I could attach this to my face! ... It's white though. I don't want to look THAT much older... Is there any way you can get me a black beard?" 
++ [He's not that grateful for all your hard work, is he?] ->shipchoices

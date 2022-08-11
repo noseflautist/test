@@ -1,0 +1,56 @@
+===place_wellonhill===
+You are at the top of a hill, and are outside an Observatory. 
+There is a broken well here. 
+->wellchoices
+
+==wellchoices==
++ [Go East, back down the hill] ->atsignpost 
++ [Enter the Observatory.] ->place_observatory
++ [Examine Area] ->coinandview
++ [Examine Broken Well] ->brokenwell
++ [Travel directly to somewhere you've already visited] ->fasttravelfromhill
++ [Check what you're carrying] ->inventorywell
+ 
+==coinandview
+You look around. You're quite high up and can see almost all of the island from here. The Observatory has white stone walls and a big domed roof. Behind it, you see the mast of a ship, tilted to one side.
++ {not coin} [What's that on the floor next to the well?] ->coin
++ {coin} There's nothing else in the grass. 
+->wellchoices
+
+==coin== 
+You see a single silver coin. You pick it up. You now have another silver coin in your Inventory. 
++ [Every little coin will help.]
+->wellchoices
+
+==brokenwell==
+The well has a winch and bar but you can’t see a bucket or rope.
++ [Look down the well.] ->lookdownwell
++ {not coin} [Look around the well.] ->coin
++ [Step away again.] ->place_wellonhill
+
+==lookdownwell==
+ There is no water in the well, {not fishforbucket: and you can see a bucket with a handle in the well, attached to a rope.} {fishforbucket: and the bottom now has nothing interesting about it.} 
+ + [Well, no fresh water for me.] ->notthirsty
+ + {not fishforbucket} [I wish I had that bucket and the rope attached too... Think about it.] ->deepthoughts
+ + [FOOLISHLY climb down the well without any safety measures!] ->stupidwellchoice 
+ 
+ ==deepthoughts==
+ That rope and bucket are sure to come in handy. If only I had a way of getting them without climbing down.
++ {fishingrod} [I could try and hook it with the fishing rod!] ->fishforbucket
+
+==stupidwellchoice==
+You climb down the well... or start to. Then you lose your footing and crack your head as you fall. It's a long way down.
+
+You died!
++ Try again from the beginning.
+    # RESTART
+    -> END
+
+==notthirsty==
+Ah, well, you're not thirsty anyway. 
+->wellchoices
+
+==fishforbucket==
+You use the fishing rod to hook the handle of the bucket, and reel it in. The bucket comes up, with the rope attached.
+You now have 20 metres of rope and an Ordinary Bucket in your inventory.
+->place_wellonhill

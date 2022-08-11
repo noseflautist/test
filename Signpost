@@ -1,0 +1,31 @@
+
+==atsignpost==
+You are at a Crossroads in the middle of the island. There is a signpost here.
+Exits are North, South, East and West. ->signpostchoices
+
+==signpostchoices==
+What do you do?
++ [Examine the Signpost] ->examinesignpost
++ [Choose a direction to travel.] ->signpostdirections
++ [Pick Up] ->pickupsignpost
++ [Use] ->examinesignpost
++ [Check what you're carrying] ->inventorysignpost
+
+==examinesignpost==
+There are 4 signs. One points North and says, “Dock.” One points West and says “Observatory.” One points East and reads, “Fields.” One points South and reads “Pet Shop.”
+->signpostchoices
+
+==pickupsignpost==
+The signpost is firmly set into the ground, and you can't even break off a piece. It looks like it's staying here.
+->atsignpost
+
+==signpostdirections==
+Which way?
++ [North, back to the dock.] ->thedock
++ {not examinesignpost and not place_wellonhill} [West] ->place_wellonhill
++ {examinesignpost or place_wellonhill} [West, up the hill towards the Observatory.]->place_wellonhill
++ {not examinesignpost and not cyclopsfield} [East] ->cyclopsfield
++ {examinesignpost} [East, towards the Fields.] ->cyclopsfield
++ {not examinesignpost and not outsideshop} [South] ->outsideshop
++ {examinesignpost or outsideshop} [South, to the Pet Shop.] ->outsideshop
++ [Stay here] ->atsignpost
